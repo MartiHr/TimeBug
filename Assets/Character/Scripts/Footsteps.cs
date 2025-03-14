@@ -1,61 +1,53 @@
 using UnityEngine;
 
-public class FootstepManager : MonoBehaviour
+public class Footsteps : MonoBehaviour
 {
-    public AudioSource audioSource; // Assign in the Inspector
-    public AudioClip[] sandFootsteps;
-    public AudioClip[] tileFootsteps;
+    public AudioSource footstepsSound, sprintSound, jumpSound, landSound;
 
     private CharacterController characterController;
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        if (audioSource == null)
-        {
-            audioSource = gameObject.AddComponent<AudioSource>();
-        }
     }
 
+    bool wasGroundedLastFrame = true; // Track previous ground state
+
+    // Update is called once per frame
     void Update()
     {
-        //if (characterController.isGrounded && characterController.velocity.magnitude > 0.1f)
-        //{
-            if (!audioSource.isPlaying)
+        bool isGrounded = characterController.isGrounded;
+
+        if (!wasGroundedLastFrame && isGrounded)
+        {
+            Debug.Log("land");
+            landSound.Play();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            jumpSound.Play();
+        }
+
+        wasGroundedLastFrame = isGrounded;
+
+        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) && characterController.isGrounded)
+        {
+            if (Input.GetKey(KeyCode.LeftShift))
             {
-                PlayFootstepSound();
+                footstepsSound.enabled = false;
+                sprintSound.enabled = true;
             }
-        //}
-    }
-
-    void PlayFootstepSound()
-    {
-        string terrainTag = DetectTerrainTag();
-        AudioClip clip = null;
-
-        if (terrainTag == "Sand")
-        {
-            clip = sandFootsteps[Random.Range(0, sandFootsteps.Length)];
+            else
+            {
+                footstepsSound.enabled = true;
+                sprintSound.enabled = false;
+            }
         }
-        else if (terrainTag == "Tile")
+        else
         {
-            clip = tileFootsteps[Random.Range(0, tileFootsteps.Length)];
+            sprintSound.enabled = false;
+            footstepsSound.enabled = false;
         }
-
-        if (clip != null)
-        {
-            audioSource.clip = clip;
-            audioSource.Play();
-        }
-    }
-
-    string DetectTerrainTag()
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, 2f))
-        {
-            return hit.collider.tag;
-        }
-        return "Default";
     }
 }
