@@ -1,16 +1,18 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class FollowScript : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public NavMeshAgent pet;
+    public Transform Player;
+
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        pet.SetDestination(Player.position);
     }
 }
