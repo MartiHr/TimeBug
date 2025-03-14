@@ -449,6 +449,12 @@ MonoBehaviour:
   currentMoveSpeed: 0
   walkSpeed: 3
   walkBackSpeed: 2
+  fightSpeed: 1
+  fightBackSpeed: 1
+  runSpeed: 7
+  runBackSpeed: 5
+  crouchSpeed: 2
+  crouchBackSpeed: 1
   airSpeed: 1.5
   acceleration: 5
   deceleration: 5
@@ -463,6 +469,7 @@ MonoBehaviour:
   gravity: -9.81
   jumpForce: 5
   jumped: 0
+  anim: {fileID: 0}
 --- !u!1001 &1445114491
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -669,6 +676,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4549111882529890269, guid: 37d4084557908ad4e905a784b0ced38d, type: 3}
       propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 37d4084557908ad4e905a784b0ced38d, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 551b5f8663875f44c885df6035fb295c, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 37d4084557908ad4e905a784b0ced38d, type: 3}
+      propertyPath: m_CullingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 37d4084557908ad4e905a784b0ced38d, type: 3}
+      propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7363479242261063072, guid: 37d4084557908ad4e905a784b0ced38d, type: 3}
