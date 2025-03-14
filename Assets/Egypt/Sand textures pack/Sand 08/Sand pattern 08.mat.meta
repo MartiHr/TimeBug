@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 5932f2760d420ff4da6d82bd54fe830d
+labels:
+- Architecture
+- Concrete
+- Pattern
+- Plaster
+- Ripples
+- Sand
+- Wall
+- Water
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 12964
+  packageName: Sand Textures Pack
+  packageVersion: 1.00
+  assetPath: Assets/Sand textures pack/Sand 08/Sand pattern 08.mat
+  uploadId: 29422
