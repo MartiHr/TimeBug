@@ -20,7 +20,6 @@ public class Footsteps : MonoBehaviour
 
         if (!wasGroundedLastFrame && isGrounded)
         {
-            Debug.Log("land");
             landSound.Play();
         }
 
