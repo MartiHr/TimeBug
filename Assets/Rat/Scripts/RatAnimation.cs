@@ -1,16 +1,19 @@
 using UnityEngine;
 
-public class RatAnimation : MonoBehaviour
+public class MouseAnimation : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private Animator animator;
+    private Rigidbody2D rb;
+
     void Start()
     {
-        
+;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        // Calculate movement speed
+        float speed = ((Vector2)transform.position - lastPosition).magnitude / Time.deltaTime;
+        lastPosition = transform.position;
     }
 }
