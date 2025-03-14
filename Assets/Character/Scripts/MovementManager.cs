@@ -1,4 +1,5 @@
 using NUnit.Framework.Interfaces;
+using System;
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
@@ -40,8 +41,6 @@ public class MovementStateManager : MonoBehaviour
     public CrouchState Crouch = new CrouchState();
     public RunState Run = new RunState();
     public JumpState Jump = new JumpState();
-    //public RiffleState Riffle = new RiffleState();
-    //public RiffleWalkState RiffleWalk = new RiffleWalkState();
     #endregion
 
     [HideInInspector] public Animator anim;
@@ -70,6 +69,7 @@ public class MovementStateManager : MonoBehaviour
         anim.SetFloat("vInput", vInput, dampTime, Time.deltaTime);
 
         currentState.UpdateState(this);
+        //Debug.Log(currentState.GetType().ToString());
     }
 
     public void SwitchState(MovementBaseState state)
