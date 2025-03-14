@@ -777,6 +777,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: blackrat
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 1e26ca4284ab07e4ea1f3830faf21ac5, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: c160dfbf04af912438e7bf06f657a945, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -2486360093502717811, guid: 1e26ca4284ab07e4ea1f3830faf21ac5, type: 3}
