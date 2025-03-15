@@ -10,7 +10,10 @@ public class CarOutInteraction : MonoBehaviour
     public GameObject aimCamera;
     public GameObject playerCamera;
 
-    private Vector3 offset = new Vector3(-3, 0, 0); // Move player to the left
+    private Vector3 offset = new Vector3(-3, 0, 0);
+
+    private AudioSource audioSource;
+
 
     private void setToPlayer()
     {
@@ -33,27 +36,9 @@ public class CarOutInteraction : MonoBehaviour
         playerCamera.SetActive(true);
     }
 
-
-    //private void setToPlayer()
-    //{
-    //    player.transform.position = flyingCar.transform.TransformPoint(offset); // Relative to car
-
-    //    staticCar.transform.position = flyingCar.transform.position + new Vector3(0, , 0); // Below car
-
-    //    player.transform.rotation = flyingCar.transform.rotation; // Align with car
-    //    staticCar.transform.rotation = flyingCar.transform.rotation; // Align with car
-
-    //    staticCar.SetActive(true);
-    //    flyingCar.SetActive(false);
-    //    player.SetActive(true);
-    //    aimCamera.SetActive(true);
-    //    playerCamera.SetActive(true);
-    //}
-
-
     void Start()
     {
-
+        audioSource = flyingCar.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -61,6 +46,8 @@ public class CarOutInteraction : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             setToPlayer();
+            audioSource.enabled = false;
+            GetComponent<SoundManager>().enabled = false;
         }
     }
 
