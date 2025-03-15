@@ -35,15 +35,13 @@ public class UIManagerEinstein : MonoBehaviour
                 player.SetActive(false);
                 thirdPersonCamera.SetActive(false);
                 secondPersonCamera.SetActive(true);
-                chat.SetActive(true);
-                StartCoroutine(StopAnimationAfterDelay(5f)); // Call Coroutine to stop animation after 3 seconds
+                chat.SetActive(true);// Call Coroutine to stop animation after 3 seconds
             }
         }
     }
 
-    private IEnumerator StopAnimationAfterDelay(float delay)
+    public void StopAnimationOnClick()
     {
-        yield return new WaitForSeconds(delay); // Wait for the specified time (3 seconds)
         sittingPlayer.SetActive(false);
         player.SetActive(true);
         thirdPersonCamera.SetActive(true);
