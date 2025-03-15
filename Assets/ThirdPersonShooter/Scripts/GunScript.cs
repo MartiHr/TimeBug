@@ -4,7 +4,8 @@ public class GunScript : MonoBehaviour
 {
     public Camera playerCamera;
     public float shootingRange = 100f;
-
+    public GameObject chargePrefab;
+    public Transform weaponTip;
     void Update()
     {
         if (Input.GetButtonDown("Fire1"))
@@ -28,5 +29,7 @@ public class GunScript : MonoBehaviour
                 enemy.HitByBullet();
             }
         }
+
+        Instantiate(chargePrefab, weaponTip.position, weaponTip.rotation);
     }
 }
