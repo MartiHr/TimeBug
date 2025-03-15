@@ -2851,7 +2851,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2615011892089927783, guid: ae0059bdd39ac414087e06d8ea2616c5, type: 3}
       propertyPath: sceneToLoad
-      value: Einstein/Scene
+      value: Cutscenes/VikingEndCutscene
       objectReference: {fileID: 0}
     - target: {fileID: 5244720591442386724, guid: ae0059bdd39ac414087e06d8ea2616c5, type: 3}
       propertyPath: m_LocalPosition.x

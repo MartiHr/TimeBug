@@ -129,7 +129,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2615011892089927783, guid: ae0059bdd39ac414087e06d8ea2616c5, type: 3}
       propertyPath: sceneToLoad
-      value: Cutscenes/Cutscene
+      value: Cutscenes/VikingStartCutscene
       objectReference: {fileID: 0}
     - target: {fileID: 5244720591442386724, guid: ae0059bdd39ac414087e06d8ea2616c5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1760,8 +1760,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 647127540}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.9, y: 3.69, z: 8.6}
+  m_LocalRotation: {x: 0, y: 0.27655998, z: 0, w: 0.9609967}
+  m_LocalPosition: {x: -25.6, y: 3.69, z: -30.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1769,7 +1769,7 @@ Transform:
   - {fileID: 760231215}
   - {fileID: 685934623}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 32.11, z: 0}
 --- !u!114 &647127542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2653,8 +2653,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 769015313}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.41, y: 3.2850003, z: 5.4600005}
+  m_LocalRotation: {x: -0.00000012613273, y: 0.27655992, z: 0.000000036299042, w: 0.9609967}
+  m_LocalPosition: {x: -26.83707, y: 3.2850003, z: -33.53076}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5261,8 +5261,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1928296694}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.41, y: 3.2850003, z: 5.4600005}
+  m_LocalRotation: {x: -0.00000012613273, y: 0.27655992, z: 0.000000036299042, w: 0.9609967}
+  m_LocalPosition: {x: -26.83707, y: 3.2850003, z: -33.53076}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

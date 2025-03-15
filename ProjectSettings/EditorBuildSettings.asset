@@ -26,6 +26,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Character/CharacterMovement.unity
     guid: 62d16b1459503eb4f813baf069c5c142
+  - enabled: 1
+    path: Assets/Cutscenes/EinsteinEndScene.unity
+    guid: 6b870427b7ff5444d98c56b9732977fd
+  - enabled: 1
+    path: Assets/Cutscenes/LabratoryEndScene.unity
+    guid: 512586239a8534a4586c8240914d807b
+  - enabled: 1
+    path: Assets/Cutscenes/VikingEndCutscene.unity
+    guid: 958b20da5de047a488ba5ba31b98e152
+  - enabled: 1
+    path: Assets/Cutscenes/VikingStartCutscene.unity
+    guid: d3760b93fac049748be708728a0b524f
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 35845fe01580c41289b024647b1d1c53, type: 3}
   m_UseUCBPForAssetBundles: 0
