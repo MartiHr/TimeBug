@@ -614,7 +614,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &126373176
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1026,6 +1026,7 @@ GameObject:
   - component: {fileID: 189217470}
   - component: {fileID: 189217469}
   - component: {fileID: 189217468}
+  - component: {fileID: 189217471}
   m_Layer: 5
   m_Name: Choice2
   m_TagString: Untagged
@@ -1096,7 +1097,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 189217469}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 189217471}
+        m_TargetAssemblyTypeName: ButtonColorChanger, Assembly-CSharp
+        m_MethodName: ChangeColor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &189217469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1135,6 +1148,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 189217466}
   m_CullTransparentMesh: 1
+--- !u!114 &189217471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189217466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4054c62fba9a54e41a2932c0076ae0cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myButton: {fileID: 189217468}
+  targetColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1 &223114472
 GameObject:
   m_ObjectHideFlags: 0
@@ -1857,7 +1884,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ' It explains how to create a portal to alternate dimensions.'
+  m_text: It describes the power of energy manipulation to stabilize temporal energy
+    fields.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1884,8 +1912,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 17
+  m_fontSizeBase: 17
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3831,6 +3859,7 @@ GameObject:
   - component: {fileID: 649770974}
   - component: {fileID: 649770973}
   - component: {fileID: 649770972}
+  - component: {fileID: 649770975}
   m_Layer: 5
   m_Name: Choice3
   m_TagString: Untagged
@@ -3902,9 +3931,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 607771094}
-        m_TargetAssemblyTypeName: UIManagerEinstein, Assembly-CSharp
-        m_MethodName: StopAnimationOnClick
+      - m_Target: {fileID: 649770975}
+        m_TargetAssemblyTypeName: ButtonColorChanger, Assembly-CSharp
+        m_MethodName: ChangeColor
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3952,6 +3981,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 649770970}
   m_CullTransparentMesh: 1
+--- !u!114 &649770975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649770970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4054c62fba9a54e41a2932c0076ae0cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myButton: {fileID: 649770972}
+  targetColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1 &655834721
 GameObject:
   m_ObjectHideFlags: 0
@@ -4633,7 +4676,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &918028335
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7922,8 +7965,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: It describes the power of energy manipulation to stabilize temporal energy
-    fields.
+  m_text: ' It explains how to create a portal to alternate dimensions.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7950,8 +7992,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 17
-  m_fontSizeBase: 17
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -9331,9 +9373,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 607771094}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UIManagerEinstein, Assembly-CSharp
-        m_MethodName: StopAnimationOnClick
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
