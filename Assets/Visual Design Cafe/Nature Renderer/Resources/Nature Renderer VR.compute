@@ -1,0 +1,18 @@
+#pragma kernel SetInstanceMultiplier
+
+struct IndirectDrawIndexedArgs
+{
+    uint indexCountPerInstance;
+    uint instanceCount;
+    uint startIndex;
+    uint baseVertexIndex;
+    uint startInstance;
+};
+
+RWStructuredBuffer<IndirectDrawIndexedArgs> Args;
+
+[numthreads(1,1,1)]
+void SetInstanceMultiplier(uint3 id : SV_DispatchThreadID) 
+{
+    Args[id.x].instanceCount *= 2;
+}

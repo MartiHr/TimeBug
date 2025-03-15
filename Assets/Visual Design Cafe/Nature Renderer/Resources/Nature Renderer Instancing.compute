@@ -1,0 +1,340 @@
+#pragma kernel Cull_32 GROUPS=32
+#pragma kernel Cull_32_WithShadows GROUPS=32 SHADOWS=1
+#pragma kernel BuildOutput_32 GROUPS=32
+#pragma kernel BuildOutputWithShadows_32 SHADOWS=1  GROUPS=32
+
+#pragma kernel Cull_64 GROUPS=64
+#pragma kernel Cull_64_WithShadows GROUPS=64 SHADOWS=1
+#pragma kernel BuildOutput_64 GROUPS=64
+#pragma kernel BuildOutputWithShadows_64 SHADOWS=1  GROUPS=64
+
+#pragma kernel Cull_128 GROUPS=128
+#pragma kernel Cull_128_WithShadows GROUPS=128 SHADOWS=1
+#pragma kernel BuildOutput_128 GROUPS=128
+#pragma kernel BuildOutputWithShadows_128 SHADOWS=1  GROUPS=128
+
+#pragma kernel Cull_256 GROUPS=256
+#pragma kernel Cull_256_WithShadows GROUPS=256 SHADOWS=1
+#pragma kernel BuildOutput_256 GROUPS=256
+#pragma kernel BuildOutputWithShadows_256 SHADOWS=1  GROUPS=256
+
+#pragma kernel Cull_512 GROUPS=512
+#pragma kernel Cull_512_WithShadows GROUPS=512 SHADOWS=1
+#pragma kernel BuildOutput_512 GROUPS=512
+#pragma kernel BuildOutputWithShadows_512 SHADOWS=1  GROUPS=512
+
+#pragma kernel Cull_1024 GROUPS=1024
+#pragma kernel Cull_1024_WithShadows GROUPS=1024 SHADOWS=1
+#pragma kernel BuildOutput_1024 GROUPS=1024
+#pragma kernel BuildOutputWithShadows_1024 SHADOWS=1  GROUPS=1024
+
+struct InstanceMatrix
+{
+    // position.xyz : position.xyz
+    // position.w : rotation.x
+    // scale.x : scale.xz
+    // scale.y : scale.y
+    // scale.zw : rotation.yz
+    float4 position;
+    float4 scale;
+};
+
+StructuredBuffer<InstanceMatrix> Input;
+AppendStructuredBuffer<InstanceMatrix> Output;
+#if SHADOWS
+    AppendStructuredBuffer<InstanceMatrix> OutputShadows;
+#endif
+
+struct InstanceMeta
+{
+    // The active LOD of the instance. 
+    // A value of 0 means the instance is culled.
+    int Lod;
+
+    // The active LOD for the shadow of the instance.
+    // A value of 0 means the shadow is culled.
+    int Shadow;
+
+    // The scale of the instance can be adjusted
+    float Scale;
+};
+
+RWStructuredBuffer<InstanceMeta> Meta;
+
+uint _Count;
+uint _LodCount;
+
+// LOD format:
+//   x: start distance
+//   y: end distance
+//   z: size
+//   w: center
+float4 _Lods[9];
+
+float3 _Origin;
+float3 _CameraPosition;
+float _ShadowDistance;
+float3 _ShadowDirection;
+float4 _FrustumPlanes[6];
+
+// x: density that should be used in the distance.
+// y: range start
+// z: range length
+float4 _DensityInDistance;
+
+// Plane equation: {(a, b, c) = N, d = -dot(N, P)}.
+// Returns the distance from the plane to the point 'p' along the normal.
+// Positive -> in front (above), negative -> behind (below).
+float DistanceFromPlane(float3 p, float4 plane)
+{
+    return dot(float4(p, 1.0), plane);
+}
+
+// Returns 'true' if the object is outside of the frustum.
+// 'size' is the (negative) size of the object's bounds.
+bool CullFrustum(float3 center, float size, float4 frustumPlanes[6], int numPlanes)
+{
+    bool outside = false;
+    for (int i = 0; i < numPlanes; i++)
+        outside = outside || DistanceFromPlane(center, frustumPlanes[i]) < size;
+
+    return outside;
+}
+
+float3 RayPlaneIntersect(in float3 rayOrigin, in float3 rayDirection, in float3 planeOrigin, in float3 planeNormal, out float dist)
+{
+    dist = dot(planeNormal, planeOrigin - rayOrigin) / dot(planeNormal, rayDirection);
+    return rayOrigin + rayDirection * dist;
+}
+
+// Returns 'true' if the shadow of the object is outside of the frustum.
+// 'size' is the (negative) size of the object's bounds.
+bool CullShadowFrustum(float3 center, float size, float3 lightDirection, float4 frustumPlanes[6])
+{
+    bool inside = false;
+    for (int i = 0; i < 6; i++)
+    {
+        float d;
+        float3 p = RayPlaneIntersect(center, lightDirection, _CameraPosition.xyz, frustumPlanes[i].xyz, d);
+        if (d > 0 && distance(_CameraPosition.xyz, p) < _ShadowDistance)
+        {
+            inside = inside || !CullFrustum(p, size, frustumPlanes, 6);
+        }
+    }
+
+    return !inside;
+}
+
+// Calculates the adjusted scale of the instance based on the "Density in Distance"
+// setting. Instances get scaled down if the density is reduced.
+float ReduceDensityScale( inout InstanceMatrix instnc, float distance )
+{
+    float rangeStart = _DensityInDistance.y;
+    float rangeLength = _DensityInDistance.z;
+
+    // Calculate a dither pattern with range [0..1]
+    float dither = frac(dot(float3((instnc.position.xz + _Origin.xz) * 16.0, 0), uint3(2, 7, 23) / 17.0f));
+
+    float densityThreshold = 1 - _DensityInDistance.x;
+    float distanceNormalized = (distance - rangeStart) / (rangeLength * dither + 0.001);
+
+    if( dither > _DensityInDistance.x && distanceNormalized > 0 )
+        return 1 - distanceNormalized;
+    else
+        return 1;
+}
+
+float4 DecompressQuaternion(float x, float y, float z)
+{
+    return float4(
+        x,
+        y,
+        z,
+        sqrt( 1.0 - x * x - y * y - z * z ) );
+}
+
+float3 Up(float4 quaternion)
+{
+    // up vector
+    return float3(
+        2 * (quaternion.x*quaternion.y - quaternion.w*quaternion.z),
+        1 - 2 * (quaternion.x*quaternion.x + quaternion.z*quaternion.z),
+        2 * (quaternion.y*quaternion.z + quaternion.w*quaternion.x)  );
+}
+
+void Cull (uint3 id : SV_DispatchThreadID)
+{
+    if( id.x >= _Count)
+        return;
+
+    InstanceMatrix instnc = Input[id.x];
+    
+    // Calculate active LOD
+    float dist = distance(instnc.position.xyz, _CameraPosition.xyz);
+    InstanceMeta meta = (InstanceMeta)0;
+    for(uint i=0; i<_LodCount; i++)
+    {
+        float maxDist = 
+            i < _LodCount -1 ? _Lods[i].y * instnc.scale.y : _Lods[i].y;
+            
+        if( dist >= _Lods[i].x * instnc.scale.y && dist < maxDist)
+        {
+            meta.Lod = i+1;
+            if(dist < _ShadowDistance)
+                meta.Shadow = i+1;
+        }
+    }
+    
+    // Reduce density
+    if(_DensityInDistance.x < 1)
+    {
+        meta.Scale = ReduceDensityScale(instnc, dist);
+        if( meta.Scale < 0.3 )
+        {
+            meta.Lod = 0;
+            meta.Shadow = 0;
+        }
+    }
+    else
+    {
+        meta.Scale = 1;
+    }
+
+    // Frustum Culling
+    if( meta.Lod > 0)
+    {
+        float scale = length(instnc.scale.xy) * meta.Scale;
+        float boundsExtends = _Lods[meta.Lod-1].z * scale * 0.5;
+        float3 up = Up(DecompressQuaternion(instnc.position.w, instnc.scale.z, instnc.scale.w));
+        const int planeCount = 5; // Do not test far planes
+        float3 boundsCenter = instnc.position.xyz + up * _Lods[meta.Lod-1].w * instnc.scale.y * meta.Scale;
+
+        if (CullFrustum(boundsCenter, -boundsExtends, _FrustumPlanes, planeCount))
+        {
+            // Setting active LOD to 0 culls the instance. The LODs start from 1.
+            meta.Lod = 0;
+
+            #if SHADOWS
+                if (meta.Shadow > 0)
+                {
+                    if (CullShadowFrustum(
+                            boundsCenter,
+                            -boundsExtends, 
+                            _ShadowDirection, 
+                            _FrustumPlanes))
+                    {
+                        meta.Shadow = 0;
+                    }
+                }
+            #endif
+        }
+    }
+
+    Meta[id.x] = meta;
+}
+
+int _ActiveLod;
+
+void BuildOutput (uint3 id : SV_DispatchThreadID)
+{
+    if( id.x >= _Count)
+        return;
+        
+    InstanceMeta meta = Meta[id.x];
+    if( meta.Lod == _ActiveLod + 1) 
+    {
+        InstanceMatrix instnc = Input[id.x];
+        instnc.scale.xy *= meta.Scale;
+        Output.Append(instnc);
+    } 
+}
+
+void BuildOutputWithShadows (uint3 id : SV_DispatchThreadID)
+{
+    if( id.x >= _Count)
+        return;
+        
+    InstanceMatrix instnc = Input[id.x];
+    InstanceMeta meta = Meta[id.x];
+
+    instnc.scale.xy *= meta.Scale;
+
+    #if SHADOWS
+        if( meta.Shadow == _ActiveLod + 1)
+        {
+            OutputShadows.Append(instnc);
+        }
+    #endif
+}
+
+[numthreads(GROUPS,1,1)]
+void Cull_32(uint3 id : SV_DispatchThreadID) { Cull(id); }
+
+[numthreads(GROUPS,1,1)]
+void Cull_64(uint3 id : SV_DispatchThreadID) { Cull(id); }
+
+[numthreads(GROUPS,1,1)]
+void Cull_128(uint3 id : SV_DispatchThreadID) { Cull(id); }
+
+[numthreads(GROUPS,1,1)]
+void Cull_256(uint3 id : SV_DispatchThreadID) { Cull(id); }
+
+[numthreads(GROUPS,1,1)]
+void Cull_512(uint3 id : SV_DispatchThreadID) { Cull(id); }
+
+[numthreads(GROUPS,1,1)]
+void Cull_1024(uint3 id : SV_DispatchThreadID) { Cull(id); }
+
+[numthreads(GROUPS,1,1)]
+void Cull_32_WithShadows(uint3 id : SV_DispatchThreadID) { Cull(id); }
+
+[numthreads(GROUPS,1,1)]
+void Cull_64_WithShadows(uint3 id : SV_DispatchThreadID) { Cull(id); }
+
+[numthreads(GROUPS,1,1)]
+void Cull_128_WithShadows(uint3 id : SV_DispatchThreadID) { Cull(id); }
+
+[numthreads(GROUPS,1,1)]
+void Cull_256_WithShadows(uint3 id : SV_DispatchThreadID) { Cull(id); }
+
+[numthreads(GROUPS,1,1)]
+void Cull_512_WithShadows(uint3 id : SV_DispatchThreadID) { Cull(id); }
+
+[numthreads(GROUPS,1,1)]
+void Cull_1024_WithShadows(uint3 id : SV_DispatchThreadID) { Cull(id); }
+
+[numthreads(GROUPS,1,1)]
+void BuildOutput_32(uint3 id : SV_DispatchThreadID) { BuildOutput(id); }
+
+[numthreads(GROUPS,1,1)]
+void BuildOutput_64(uint3 id : SV_DispatchThreadID) { BuildOutput(id); }
+
+[numthreads(GROUPS,1,1)]
+void BuildOutput_128(uint3 id : SV_DispatchThreadID) { BuildOutput(id); }
+
+[numthreads(GROUPS,1,1)]
+void BuildOutput_256(uint3 id : SV_DispatchThreadID) { BuildOutput(id); }
+
+[numthreads(GROUPS,1,1)]
+void BuildOutput_512(uint3 id : SV_DispatchThreadID) { BuildOutput(id); }
+
+[numthreads(GROUPS,1,1)]
+void BuildOutput_1024(uint3 id : SV_DispatchThreadID) { BuildOutput(id); }
+
+[numthreads(GROUPS,1,1)]
+void BuildOutputWithShadows_32(uint3 id : SV_DispatchThreadID) { BuildOutputWithShadows(id); }
+
+[numthreads(GROUPS,1,1)]
+void BuildOutputWithShadows_64(uint3 id : SV_DispatchThreadID) { BuildOutputWithShadows(id); }
+
+[numthreads(GROUPS,1,1)]
+void BuildOutputWithShadows_128(uint3 id : SV_DispatchThreadID) { BuildOutputWithShadows(id); }
+
+[numthreads(GROUPS,1,1)]
+void BuildOutputWithShadows_256(uint3 id : SV_DispatchThreadID) { BuildOutputWithShadows(id); }
+
+[numthreads(GROUPS,1,1)]
+void BuildOutputWithShadows_512(uint3 id : SV_DispatchThreadID) { BuildOutputWithShadows(id); }
+
+[numthreads(GROUPS,1,1)]
+void BuildOutputWithShadows_1024(uint3 id : SV_DispatchThreadID) { BuildOutputWithShadows(id); }

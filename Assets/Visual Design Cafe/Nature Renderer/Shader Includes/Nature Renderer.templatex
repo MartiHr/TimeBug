@@ -1,0 +1,112 @@
+// {% comment %}
+// Copyright 2020 Visual Design Cafe. All rights reserved.
+// Package: Nature Renderer
+// Website: https://www.visualdesigncafe.com/nature-renderer
+// {% endcomment %}
+
+#ifndef NODE_NATURE_RENDERER_INCLUDED
+#define NODE_NATURE_RENDERER_INCLUDED
+
+#ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
+
+    #define Use_Macro_UNITY_MATRIX_M_instead_of_unity_ObjectToWorld unity_ObjectToWorld
+    #define Use_Macro_UNITY_MATRIX_I_M_instead_of_unity_WorldToObject unity_WorldToObject
+
+    struct InstanceMatrix
+    {
+        // .xyz : position.xyz
+        // .w : rotation.x
+        float4 position;
+        // .x : scale.xz
+        // .y : scale.y
+        // .zw : rotation.yz
+        float4 scale;
+    };
+
+    StructuredBuffer<InstanceMatrix> _Instances;
+    float4x4 _InstanceMatrix;
+
+    float4x4 TRS(float3 t, float4 r, float3 s)
+    {
+        float4x4 result = (float4x4)0;
+        result[0][0] = (1.0f-2.0f*(r.y*r.y+r.z*r.z))*s.x;
+        result[1][0] = (r.x*r.y+r.z*r.w)*s.x*2.0f;
+        result[2][0] = (r.x*r.z-r.y*r.w)*s.x*2.0f;
+        result[3][0] = 0.0f;
+        result[0][1] = (r.x*r.y-r.z*r.w)*s.y*2.0f;
+        result[1][1] = (1.0f-2.0f*(r.x*r.x+r.z*r.z))*s.y;
+        result[2][1] = (r.y*r.z+r.x*r.w)*s.y*2.0f;
+        result[3][1] = 0.0f;
+        result[0][2] = (r.x*r.z+r.y*r.w)*s.z*2.0f;
+        result[1][2] = (r.y*r.z-r.x*r.w)*s.z*2.0f;
+        result[2][2] = (1.0f-2.0f*(r.x*r.x+r.y*r.y))*s.z;
+        result[3][2] = 0.0f;
+        result[0][3] = t.x;
+        result[1][3] = t.y;
+        result[2][3] = t.z;
+        result[3][3] = 1.0f;
+        return result;
+    }
+
+    void DecompressInstanceMatrix( inout float4x4 m, InstanceMatrix cm )
+    {
+        float3 position = cm.position.xyz;
+        float4 rotation = float4(cm.position.w, cm.scale.zw, 0);
+        float3 scale = cm.scale.xyx;
+        rotation.w = sqrt( 1.0 - rotation.x * rotation.x - rotation.y * rotation.y - rotation.z * rotation.z );
+        m = TRS(position, rotation, scale);
+    }
+
+    float4x4 inverse(float4x4 input)
+    {
+        #define minor(a,b,c) determinant(float3x3(input.a, input.b, input.c))
+        
+        float4x4 cofactors = float4x4(
+            minor(_22_23_24, _32_33_34, _42_43_44), 
+            -minor(_21_23_24, _31_33_34, _41_43_44),
+            minor(_21_22_24, _31_32_34, _41_42_44),
+            -minor(_21_22_23, _31_32_33, _41_42_43),
+            
+            -minor(_12_13_14, _32_33_34, _42_43_44),
+            minor(_11_13_14, _31_33_34, _41_43_44),
+            -minor(_11_12_14, _31_32_34, _41_42_44),
+            minor(_11_12_13, _31_32_33, _41_42_43),
+            
+            minor(_12_13_14, _22_23_24, _42_43_44),
+            -minor(_11_13_14, _21_23_24, _41_43_44),
+            minor(_11_12_14, _21_22_24, _41_42_44),
+            -minor(_11_12_13, _21_22_23, _41_42_43),
+            
+            -minor(_12_13_14, _22_23_24, _32_33_34),
+            minor(_11_13_14, _21_23_24, _31_33_34),
+            -minor(_11_12_14, _21_22_24, _31_32_34),
+            minor(_11_12_13, _21_22_23, _31_32_33)
+        );
+        #undef minor
+        return transpose(cofactors) / determinant(input);
+    }
+#endif
+
+void SetupNatureRenderer()
+{
+    #ifdef UNITY_PROCEDURAL_INSTANCING_ENABLED
+        DecompressInstanceMatrix(unity_ObjectToWorld, _Instances[unity_InstanceID]);
+
+        unity_ObjectToWorld = mul(unity_ObjectToWorld, _InstanceMatrix);
+        unity_WorldToObject = inverse(unity_ObjectToWorld);
+
+        #ifdef UNITY_PREV_MATRIX_M
+            unity_MatrixPreviousM = unity_ObjectToWorld;
+        #endif
+
+        #ifdef UNITY_PREV_MATRIX_I_M
+            unity_MatrixPreviousMI = unity_WorldToObject;
+        #endif
+    #endif
+}
+
+void NatureRenderer_float( float3 vertex, out float3 vertexOut )
+{
+    vertexOut = vertex;
+}
+#endif

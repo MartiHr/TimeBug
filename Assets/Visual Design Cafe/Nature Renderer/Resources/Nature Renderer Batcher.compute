@@ -1,0 +1,239 @@
+#pragma kernel Batch1_32 BATCH1 GROUPS=32
+#pragma kernel Batch3_32 BATCH3 GROUPS=32
+#pragma kernel Batch4_32 BATCH4 GROUPS=32
+#pragma kernel Batch9_32 BATCH9 GROUPS=32
+
+#pragma kernel Batch1_64 BATCH1 GROUPS=64
+#pragma kernel Batch3_64 BATCH3 GROUPS=64
+#pragma kernel Batch4_64 BATCH4 GROUPS=64
+#pragma kernel Batch9_64 BATCH9 GROUPS=64
+
+#pragma kernel Batch1_128 BATCH1 GROUPS=128
+#pragma kernel Batch3_128 BATCH3 GROUPS=128
+#pragma kernel Batch4_128 BATCH4 GROUPS=128
+#pragma kernel Batch9_128 BATCH9 GROUPS=128
+
+#pragma kernel Batch1_256 BATCH1 GROUPS=256
+#pragma kernel Batch3_256 BATCH3 GROUPS=256
+#pragma kernel Batch4_256 BATCH4 GROUPS=256
+#pragma kernel Batch9_256 BATCH9 GROUPS=256
+
+#pragma kernel Batch1_512 BATCH1 GROUPS=512
+#pragma kernel Batch3_512 BATCH3 GROUPS=512
+#pragma kernel Batch4_512 BATCH4 GROUPS=512
+#pragma kernel Batch9_512 BATCH9 GROUPS=512
+
+#pragma kernel Batch1_1024 BATCH1 GROUPS=1024
+#pragma kernel Batch3_1024 BATCH3 GROUPS=1024
+#pragma kernel Batch4_1024 BATCH4 GROUPS=1024
+#pragma kernel Batch9_1024 BATCH9 GROUPS=1024
+
+struct InstanceMatrix
+{
+    // .xyz : position.xyz
+    // .w : rotation.x
+    float4 position;
+    // .x : scale.xz
+    // .y : scale.y
+    // .zw : rotation.yz
+    float4 scale;
+};
+
+#if defined(BATCH1) || defined(BATCH3) || defined(BATCH4) || defined(BATCH9)
+    StructuredBuffer<InstanceMatrix> Input1;
+#endif
+#if defined(BATCH3) || defined(BATCH4) || defined(BATCH9)
+    StructuredBuffer<InstanceMatrix> Input2;
+    StructuredBuffer<InstanceMatrix> Input3;
+#endif
+#if defined(BATCH4) || defined(BATCH9)
+    StructuredBuffer<InstanceMatrix> Input4;
+#endif
+#if defined(BATCH9)
+    StructuredBuffer<InstanceMatrix> Input5;
+    StructuredBuffer<InstanceMatrix> Input6;
+    StructuredBuffer<InstanceMatrix> Input7;
+    StructuredBuffer<InstanceMatrix> Input8;
+    StructuredBuffer<InstanceMatrix> Input9;
+#endif
+
+RWStructuredBuffer<InstanceMatrix> Output;
+
+uint Offset;
+
+uint Count1;
+uint Count2;
+uint Count3;
+uint Count4;
+uint Count5;
+uint Count6;
+uint Count7;
+uint Count8;
+uint Count9;
+
+float4 Origin1;
+float4 Origin2;
+float4 Origin3;
+float4 Origin4;
+float4 Origin5;
+float4 Origin6;
+float4 Origin7;
+float4 Origin8;
+float4 Origin9;
+
+InstanceMatrix AddOffset( InstanceMatrix m, float4 offset )
+{
+    m.position.xyz += offset.xyz;
+    return m;
+}
+
+#if defined(BATCH1)
+    void Batch1 (uint3 id : SV_DispatchThreadID)
+    {
+        if(id.x < Count1)
+            Output[id.x + Offset] = AddOffset(Input1[id.x], Origin1);
+    }
+#endif
+
+#if defined(BATCH3)
+    void Batch3 (uint3 id : SV_DispatchThreadID)
+    {
+        if(id.x < Count1)
+            Output[id.x + Offset] = AddOffset(Input1[id.x], Origin1);
+
+        if(id.x < Count2)
+            Output[id.x+Count1 + Offset] = AddOffset(Input2[id.x], Origin2);
+
+        if(id.x < Count3)
+            Output[id.x+Count1+Count2 + Offset] = AddOffset(Input3[id.x], Origin3);
+    }
+#endif
+
+#if defined(BATCH4)
+    void Batch4 (uint3 id : SV_DispatchThreadID)
+    {
+        if(id.x < Count1)
+            Output[id.x + Offset] = AddOffset(Input1[id.x], Origin1);
+
+        if(id.x < Count2)
+            Output[id.x+Count1 + Offset] = AddOffset(Input2[id.x], Origin2);
+
+        if(id.x < Count3)
+            Output[id.x+Count1+Count2 + Offset] = AddOffset(Input3[id.x], Origin3);
+
+        if(id.x < Count4)
+            Output[id.x+Count1+Count2+Count3 + Offset] = AddOffset(Input4[id.x], Origin4);
+    }
+#endif
+
+#if defined(BATCH9)
+    void Batch9 (uint3 id : SV_DispatchThreadID)
+    {
+        if(id.x < Count1)
+            Output[id.x + Offset] = AddOffset(Input1[id.x], Origin1);
+
+        if(id.x < Count2)
+            Output[id.x+Count1 + Offset] = AddOffset(Input2[id.x], Origin2);
+
+        if(id.x < Count3)
+            Output[id.x+Count1+Count2 + Offset] = AddOffset(Input3[id.x], Origin3);
+
+        if(id.x < Count4)
+            Output[id.x+Count1+Count2+Count3 + Offset] = AddOffset(Input4[id.x], Origin4);
+
+        if(id.x < Count5)
+            Output[id.x+Count1+Count2+Count3+Count4 + Offset] = AddOffset(Input5[id.x], Origin5);
+
+        if(id.x < Count6)
+            Output[id.x+Count1+Count2+Count3+Count4+Count5 + Offset] = AddOffset(Input6[id.x], Origin6);
+
+        if(id.x < Count7)
+            Output[id.x+Count1+Count2+Count3+Count4+Count5+Count6 + Offset] = AddOffset(Input7[id.x], Origin7);
+
+        if(id.x < Count8)
+            Output[id.x+Count1+Count2+Count3+Count4+Count5+Count6+Count7 + Offset] = AddOffset(Input8[id.x], Origin8);
+
+        if(id.x < Count9)
+            Output[id.x+Count1+Count2+Count3+Count4+Count5+Count6+Count7+Count8 + Offset] = AddOffset(Input9[id.x], Origin9);
+    }
+#endif
+
+#if defined(BATCH1)
+    [numthreads(GROUPS,1,1)]
+    void Batch1_32 (uint3 id : SV_DispatchThreadID) {   Batch1(id);  }
+
+    [numthreads(GROUPS,1,1)]
+    void Batch1_64 (uint3 id : SV_DispatchThreadID)  {  Batch1(id);  }
+
+    [numthreads(GROUPS,1,1)]
+    void Batch1_128 (uint3 id : SV_DispatchThreadID)  {  Batch1(id);  }
+
+    [numthreads(GROUPS,1,1)]
+    void Batch1_256 (uint3 id : SV_DispatchThreadID)  {  Batch1(id);  }
+
+    [numthreads(GROUPS,1,1)]
+    void Batch1_512 (uint3 id : SV_DispatchThreadID)  {  Batch1(id);  }
+
+    [numthreads(GROUPS,1,1)]
+    void Batch1_1024 (uint3 id : SV_DispatchThreadID)  {  Batch1(id);  }
+#endif
+
+#if defined(BATCH3)
+    [numthreads(GROUPS,1,1)]
+    void Batch3_32 (uint3 id : SV_DispatchThreadID) {   Batch3(id);  }
+
+    [numthreads(GROUPS,1,1)]
+    void Batch3_64 (uint3 id : SV_DispatchThreadID)  {  Batch3(id);  }
+
+    [numthreads(GROUPS,1,1)]
+    void Batch3_128 (uint3 id : SV_DispatchThreadID)  {  Batch3(id);  }
+
+    [numthreads(GROUPS,1,1)]
+    void Batch3_256 (uint3 id : SV_DispatchThreadID)  {  Batch3(id);  }
+
+    [numthreads(GROUPS,1,1)]
+    void Batch3_512 (uint3 id : SV_DispatchThreadID)  {  Batch3(id);  }
+
+    [numthreads(GROUPS,1,1)]
+    void Batch3_1024 (uint3 id : SV_DispatchThreadID)  {  Batch3(id);  }
+#endif
+
+#if defined(BATCH4)
+    [numthreads(GROUPS,1,1)]
+    void Batch4_32 (uint3 id : SV_DispatchThreadID)   {   Batch4(id); }
+
+    [numthreads(GROUPS,1,1)]
+    void Batch4_64 (uint3 id : SV_DispatchThreadID)  {  Batch4(id);  }
+
+    [numthreads(GROUPS,1,1)]
+    void Batch4_128 (uint3 id : SV_DispatchThreadID)  {  Batch4(id);  }
+
+    [numthreads(GROUPS,1,1)]
+    void Batch4_256 (uint3 id : SV_DispatchThreadID)  {  Batch4(id);  }
+
+    [numthreads(GROUPS,1,1)]
+    void Batch4_512 (uint3 id : SV_DispatchThreadID)  {  Batch4(id);  }
+
+    [numthreads(GROUPS,1,1)]
+    void Batch4_1024 (uint3 id : SV_DispatchThreadID)  {  Batch4(id);  }
+#endif
+
+#if defined(BATCH9)
+    [numthreads(GROUPS,1,1)]
+    void Batch9_32 (uint3 id : SV_DispatchThreadID)  {  Batch9(id); }
+
+    [numthreads(GROUPS,1,1)]
+    void Batch9_64 (uint3 id : SV_DispatchThreadID)  {  Batch9(id); }
+
+    [numthreads(GROUPS,1,1)]
+    void Batch9_128 (uint3 id : SV_DispatchThreadID)  {  Batch9(id); }
+
+    [numthreads(GROUPS,1,1)]
+    void Batch9_256 (uint3 id : SV_DispatchThreadID)  {  Batch9(id); }
+
+    [numthreads(GROUPS,1,1)]
+    void Batch9_512 (uint3 id : SV_DispatchThreadID)  {  Batch9(id); }
+
+    [numthreads(GROUPS,1,1)]
+    void Batch9_1024 (uint3 id : SV_DispatchThreadID)  {  Batch9(id); }
+#endif
