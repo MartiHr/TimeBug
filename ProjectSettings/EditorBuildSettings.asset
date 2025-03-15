@@ -12,11 +12,20 @@ EditorBuildSettings:
     path: Assets/Egypt/Egypt.unity
     guid: 312f6f9a80a1e5140b32431dcb06f34a
   - enabled: 1
-    path: Assets/Cutscenes/Cutscene.unity
+    path: Assets/Cutscenes/IntroCutscene.unity
     guid: 389770ab9d8b10c478c9fc5a22c938db
   - enabled: 1
     path: Assets/SciFiScene/SciFiCity.unity
     guid: 136005efdaa9771488fb5a6b56917e74
+  - enabled: 1
+    path: Assets/Cutscenes/VikingStartCutscene.unity
+    guid: d3760b93fac049748be708728a0b524f
+  - enabled: 1
+    path: Assets/Vikings/VikingScene.unity
+    guid: d157b4fd431dd3e4e9a4bad218ae1888
+  - enabled: 1
+    path: Assets/ThirdPersonShooter/TPS.unity
+    guid: 753fbacd4bc629e46b38b2195953182c
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 35845fe01580c41289b024647b1d1c53, type: 3}
   m_UseUCBPForAssetBundles: 0
