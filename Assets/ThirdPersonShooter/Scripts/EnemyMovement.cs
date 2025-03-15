@@ -10,9 +10,12 @@ public class EnemyMovement : MonoBehaviour
     private float initialYPosition;
     private bool isHit = false;  // Track if enemy was hit
 
+    private Animator animator;
+
     void Start()
     {
         initialYPosition = transform.position.y;
+        animator = GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -26,6 +29,10 @@ public class EnemyMovement : MonoBehaviour
             {
                 transform.position += direction * moveSpeed * Time.deltaTime;
                 transform.position = new Vector3(transform.position.x, initialYPosition, transform.position.z);
+            }
+            else 
+            {
+                animator.SetBool("Attacking", true);
             }
 
             Quaternion targetRotation = Quaternion.LookRotation(direction);

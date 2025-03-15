@@ -6,6 +6,8 @@ public class GunScript : MonoBehaviour
     public float shootingRange = 100f;
     public GameObject chargePrefab;
     public Transform weaponTip;
+    public AudioSource gunshotSound;
+
     void Update()
     {
         if (Input.GetButtonDown("Fire1"))
@@ -16,6 +18,9 @@ public class GunScript : MonoBehaviour
 
     void Shoot()
     {
+        //Play the gun sound
+        gunshotSound.Play();
+
         RaycastHit hit;
 
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, shootingRange))
