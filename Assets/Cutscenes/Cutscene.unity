@@ -700,7 +700,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cab041d5060d9b4598bb695fca5ea73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: 
+  sceneToLoad: Egypt
 --- !u!1 &1237013967
 GameObject:
   m_ObjectHideFlags: 0
