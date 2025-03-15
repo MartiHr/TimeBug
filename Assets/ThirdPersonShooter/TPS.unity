@@ -2426,7 +2426,7 @@ GameObject:
   - component: {fileID: 1753535022}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2841,6 +2841,67 @@ Transform:
   m_Children: []
   m_Father: {fileID: 169408851}
   m_LocalEulerAnglesHint: {x: -90.2, y: -121.538, z: 184.52}
+--- !u!1001 &1906627674
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2615011892089927783, guid: ae0059bdd39ac414087e06d8ea2616c5, type: 3}
+      propertyPath: sceneToLoad
+      value: Einstein/Scene
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244720591442386724, guid: ae0059bdd39ac414087e06d8ea2616c5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 35.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244720591442386724, guid: ae0059bdd39ac414087e06d8ea2616c5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244720591442386724, guid: ae0059bdd39ac414087e06d8ea2616c5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 34.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244720591442386724, guid: ae0059bdd39ac414087e06d8ea2616c5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244720591442386724, guid: ae0059bdd39ac414087e06d8ea2616c5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244720591442386724, guid: ae0059bdd39ac414087e06d8ea2616c5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244720591442386724, guid: ae0059bdd39ac414087e06d8ea2616c5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244720591442386724, guid: ae0059bdd39ac414087e06d8ea2616c5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244720591442386724, guid: ae0059bdd39ac414087e06d8ea2616c5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5244720591442386724, guid: ae0059bdd39ac414087e06d8ea2616c5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8643440277542689349, guid: ae0059bdd39ac414087e06d8ea2616c5, type: 3}
+      propertyPath: m_Name
+      value: Portal
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ae0059bdd39ac414087e06d8ea2616c5, type: 3}
 --- !u!1 &1949141724
 GameObject:
   m_ObjectHideFlags: 0
@@ -3121,3 +3182,4 @@ SceneRoots:
   - {fileID: 1789655119}
   - {fileID: 493189111}
   - {fileID: 539737010}
+  - {fileID: 1906627674}
