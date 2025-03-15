@@ -700,7 +700,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cab041d5060d9b4598bb695fca5ea73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: Egypt
+  sceneToLoad: ThirdPersonShooter/TPS
 --- !u!1 &1237013967
 GameObject:
   m_ObjectHideFlags: 0
@@ -1168,7 +1168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18757e3cf0d917b4bb9dbce46a51ed8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutsceneData: {fileID: 11400000, guid: 4b895ab2754dd574e877fd973d2e1075, type: 2}
+  cutsceneData: {fileID: 11400000, guid: 5827b550310ffac44b3691fa766e57bd, type: 2}
   slideImage: {fileID: 2108612621}
   captionText: {fileID: 57731698}
   fadeOverlay: {fileID: 1764729710}
