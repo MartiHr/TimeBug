@@ -9,6 +9,8 @@ public class CarInInteraction : MonoBehaviour
     public GameObject aimCamera;
     public GameObject playerCamera;
 
+    private AudioSource audioSource;
+
     private void setToCar()
     {
         flyingCar.transform.position = new Vector3(staticCar.transform.position.x, staticCar.transform.position.y + 2, staticCar.transform.position.z);
@@ -21,7 +23,7 @@ public class CarInInteraction : MonoBehaviour
 
     void Start()
     {
-
+        audioSource = flyingCar.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -34,6 +36,12 @@ public class CarInInteraction : MonoBehaviour
         if (other.CompareTag("Car"))
         {
             setToCar();
+            if (audioSource == null)
+            {
+                audioSource = flyingCar.GetComponent<AudioSource>();
+            }
+            audioSource.enabled = true;
+            flyingCar.GetComponent<SoundManager>().enabled = true;
         }
     }
 }

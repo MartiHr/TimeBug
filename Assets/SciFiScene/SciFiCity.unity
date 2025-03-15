@@ -1409,7 +1409,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
@@ -2001,6 +2001,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1340262997}
   m_CullTransparentMesh: 1
+--- !u!1 &1477780053 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 963da7349641a2849829a597a85f326c, type: 3}
+  m_PrefabInstance: {fileID: 1653223358}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1653223358
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2049,6 +2054,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6908229143285547175, guid: 963da7349641a2849829a597a85f326c, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -2325145063520629565, guid: 963da7349641a2849829a597a85f326c, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -2057,16 +2066,60 @@ PrefabInstance:
       propertyPath: m_Name
       value: car 2 mouse
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 963da7349641a2849829a597a85f326c, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5075538211116365620, guid: 963da7349641a2849829a597a85f326c, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5277612121633530970, guid: 963da7349641a2849829a597a85f326c, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703862118075322704, guid: 963da7349641a2849829a597a85f326c, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8018240720179734255, guid: 963da7349641a2849829a597a85f326c, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 963da7349641a2849829a597a85f326c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1653223360}
   m_SourcePrefab: {fileID: 100100000, guid: 963da7349641a2849829a597a85f326c, type: 3}
 --- !u!4 &1653223359 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 963da7349641a2849829a597a85f326c, type: 3}
   m_PrefabInstance: {fileID: 1653223358}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &1653223360
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477780053}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.25, z: 0}
 --- !u!1 &1662381399
 GameObject:
   m_ObjectHideFlags: 0
