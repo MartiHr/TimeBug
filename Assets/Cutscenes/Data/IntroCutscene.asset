@@ -17,23 +17,23 @@ MonoBehaviour:
   slides:
   - image: {fileID: 2800000, guid: a73881e5ce4c8394d8b27a99eff69601, type: 3}
     caption: 
-    duration: 3
+    duration: 30
     slideAudio: {fileID: 0}
   - image: {fileID: 2800000, guid: 915c75cd2ae58fc4e8997ab4bf0a6624, type: 3}
     caption: 
-    duration: 3
+    duration: 30
     slideAudio: {fileID: 0}
   - image: {fileID: 2800000, guid: 694357fb92e958b4491af8745fb91e83, type: 3}
     caption: 
-    duration: 3
+    duration: 30
     slideAudio: {fileID: 0}
   - image: {fileID: 2800000, guid: 43a703aa730026f498556d14ae4c5a28, type: 3}
     caption: 
-    duration: 3
+    duration: 30
     slideAudio: {fileID: 0}
   - image: {fileID: 2800000, guid: d95fa2ff9fbf6834e90a9587652aac37, type: 3}
     caption: 
-    duration: 3
+    duration: 30
     slideAudio: {fileID: 0}
   backgroundMusic: {fileID: 0}
   fadeSpeed: 1

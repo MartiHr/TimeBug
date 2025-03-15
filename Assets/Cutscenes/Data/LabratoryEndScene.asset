@@ -17,11 +17,11 @@ MonoBehaviour:
   slides:
   - image: {fileID: 2800000, guid: 46d255b60b30bad4ba30b81ade781719, type: 3}
     caption: 
-    duration: 0
+    duration: 30
     slideAudio: {fileID: 0}
   - image: {fileID: 2800000, guid: c1f29bd909a3f264f84e7139fdfd4895, type: 3}
     caption: 
-    duration: 0
+    duration: 30
     slideAudio: {fileID: 0}
   backgroundMusic: {fileID: 0}
   fadeSpeed: 1

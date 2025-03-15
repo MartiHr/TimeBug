@@ -17,7 +17,7 @@ MonoBehaviour:
   slides:
   - image: {fileID: 2800000, guid: cd6a0f6d9ff96aa4c9fdf83fda5e3857, type: 3}
     caption: 
-    duration: 0
+    duration: 30
     slideAudio: {fileID: 0}
   backgroundMusic: {fileID: 0}
   fadeSpeed: 1
