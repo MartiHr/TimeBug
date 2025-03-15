@@ -3,7 +3,7 @@ using UnityEngine;
 public class GameAudioManager : MonoBehaviour
 {
     public AudioSource musicSource;
-    public AudioSource SFXSource;
+    //public AudioSource SFXSource;
 
     public AudioClip background;
     public AudioClip portal;
