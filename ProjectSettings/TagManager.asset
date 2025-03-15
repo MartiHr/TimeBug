@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Sand
   - Enemy
+  - Car
   layers:
   - Default
   - TransparentFX
