@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d3ed1384c29c5664eb368725bbe3ef77
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2655988077585873504
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 92152
+  packageName: 3D Scifi Kit Starter Kit
+  packageVersion: 2.7
+  assetPath: Assets/_Creepy_Cat/FBX_Importer.preset
+  uploadId: 685299
