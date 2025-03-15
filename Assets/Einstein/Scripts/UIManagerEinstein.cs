@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class UIManagerEinstein : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class UIManagerEinstein : MonoBehaviour
     public GameObject player;
     public GameObject thirdPersonCamera;
     public GameObject secondPersonCamera;
+    public GameObject portal;
+    public GameObject chat;
     private bool isPlayerInZone = false; // Track if player is inside the trigger zone
 
     void Start()
@@ -16,6 +19,8 @@ public class UIManagerEinstein : MonoBehaviour
             uiElement.SetActive(false); // Hide UI at the start
         sittingPlayer.SetActive(false);
         secondPersonCamera.SetActive(false);
+        portal.SetActive(false);
+        chat.SetActive(false);
     }
 
     void Update()
@@ -29,7 +34,8 @@ public class UIManagerEinstein : MonoBehaviour
                 sittingPlayer.SetActive(true);
                 player.SetActive(false);
                 thirdPersonCamera.SetActive(false);
-                secondPersonCamera.SetActive(true);    
+                secondPersonCamera.SetActive(true);
+                chat.SetActive(true);
                 StartCoroutine(StopAnimationAfterDelay(5f)); // Call Coroutine to stop animation after 3 seconds
             }
         }
@@ -42,6 +48,8 @@ public class UIManagerEinstein : MonoBehaviour
         player.SetActive(true);
         thirdPersonCamera.SetActive(true);
         secondPersonCamera.SetActive(false);
+        portal.SetActive(true);
+        chat.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
