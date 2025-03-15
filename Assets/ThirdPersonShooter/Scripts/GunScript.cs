@@ -20,6 +20,13 @@ public class GunScript : MonoBehaviour
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, shootingRange))
         {
             Debug.Log("Hit object with tag: " + hit.collider.tag);
+
+            // Check if the hit object is an enemy and stop its movement
+            EnemyMovement enemy = hit.collider.GetComponent<EnemyMovement>();
+            if (enemy != null)
+            {
+                enemy.HitByBullet();
+            }
         }
     }
 }
