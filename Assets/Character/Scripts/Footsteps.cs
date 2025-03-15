@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class Footsteps : MonoBehaviour
 {
-    public AudioSource footstepsSound, sprintSound, jumpSound, landSound;
+    public AudioSource footstepsSound, sprintSound;
+    public AudioSource jumpSound, landSound;
 
     private CharacterController characterController;
 
