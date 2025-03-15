@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement; // Required for scene management
 
 public class PortalScript : MonoBehaviour
 {
+    [SerializeField] private AudioSource soundAffect;
     [SerializeField] private string sceneToLoad; // Name of the scene to load
     [SerializeField] private float scaleSpeed = 2f; // Speed of shrinking animation
 
@@ -10,6 +11,7 @@ public class PortalScript : MonoBehaviour
     {
         if (other.CompareTag("Player")) // Ensure only the player triggers the portal
         {
+            soundAffect.Play();
             StartCoroutine(ShrinkAndLoadScene());
         }
     }
