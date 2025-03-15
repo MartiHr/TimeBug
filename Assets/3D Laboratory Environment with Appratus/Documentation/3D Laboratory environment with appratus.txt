@@ -1,0 +1,53 @@
+Documentation of 3D Laboratory Environment - Lab Appratus
+
+In this Laboratory Environment, we have created all the models separatedly, all the models are reuseable and it's depends upon us that how we can use and place in the environment.
+we have created Different types of Apparatus, and interior laboratory props.
+
+Apparatus:
+
+Analytics Lab instruments
+Beaker
+Boiling Liquid Stand
+china Dish
+Crucible and cover
+Crucible Tongs
+Erlenmeyer Flask
+Forceps
+Glass funnel
+Glass Lab test tube
+Graduated Cylinder
+Spirit Lamp
+Tap
+
+Interior Props:
+
+Walls
+roof with light
+floor
+chair
+2 types of shelfs
+tables with drawers
+Racks etc
+
+Models are made with more than 3 textures. The 3D Laboratory Environment pack consists of different objects created individually, so you can use them to create an intuitive and eye-catching 
+user interface for your 3D game or animated video. The vectors can be edited and placed at any scene in the game/video to give it a more defined look.
+
+We have different folders:
+1) Materials:
+	Models are made with More than 3 textures.
+2) Models: 
+	All models are included in this folder
+3) Prefabs: 
+	All the prefabs are created in this folders
+4) Scene: 
+	Laboratory environment scene.
+5) Texture:
+	We used 3 textures in this environment.
+6)Documentation: 
+	Read Me File.
+
+All the prefabs are created, you can use each prefabs according to your environment needs. you just need to drag and drop each prefab whereever you want. you can create a big Laboratory using prefabs and models for your experiment 3d games and 3d experiment animated Environment. Each objects are scable, you can transform and rotate each object.
+
+
+
+ 
