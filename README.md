@@ -11,6 +11,50 @@
   <a href="https://fmicodes.com/bg"><b>FMI-Codes-2025</b></a>
 </p>
 
+## Scenes: 
+
+### Main Menu
+<p align="center">
+  <a href="https://postimg.cc/9RqDQ3kd">
+    <img src="https://i.postimg.cc/Hx6X3d4h/sc1.png" alt="Screenshot 1">
+  </a>
+</p>
+
+### Egypt
+<p align="center">
+  <a href="https://postimg.cc/K4BKX2BF">
+    <img src="https://i.postimg.cc/661Cv6Q7/sc2.png" alt="Screenshot 2">
+  </a>
+</p>
+
+### Vikings
+<p align="center">
+  <a href="https://postimg.cc/tYzYTNBM">
+    <img src="https://i.postimg.cc/jdpNM8Pt/sc3.png" alt="Screenshot 3">
+  </a>
+</p>
+
+### Einstein
+<p align="center">
+  <a href="https://postimg.cc/pmGrQXbQ">
+    <img src="https://i.postimg.cc/Xv35bpsP/sc6.png" alt="Screenshot 4">
+  </a>
+</p>
+
+### Sci-Fi
+<p align="center">
+  <a href="https://postimg.cc/06zQVRPT">
+    <img src="https://i.postimg.cc/g0DZkm52/sc4.png" alt="Screenshot 5">
+  </a>
+</p>
+
+### Doctor Cooper's laboratory
+<p align="center">
+  <a href="https://postimg.cc/1n6zZGgM">
+    <img src="https://i.postimg.cc/gJtL84G9/sc5.png" alt="Screenshot 6">
+  </a>
+</p>
+
 
 ## Game Description
 
