@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/SciFiScene/SciFiCity.unity
     guid: 136005efdaa9771488fb5a6b56917e74
   - enabled: 1
-    path: Assets/ThirdPersonShooter/TPS.unity
+    path: Assets/ThirdPersonShooter/TPS_2.unity
     guid: 753fbacd4bc629e46b38b2195953182c
   - enabled: 1
     path: Assets/Einstein/Scene.unity
