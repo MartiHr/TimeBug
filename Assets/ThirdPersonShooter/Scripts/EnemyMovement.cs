@@ -20,28 +20,31 @@ public class EnemyMovement : MonoBehaviour
     {
         if (player != null && !isHit)
         {
-            Vector3 direction = new Vector3(player.position.x - transform.position.x, 0, player.position.z - transform.position.z).normalized;
-            float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+            Vector3 direction = new Vector3(player.position.x - transform.position.x, 0, player.position.z - transform.position.z);
+            float distanceToPlayer = direction.magnitude;
+            direction.Normalize();
 
-            // Set animation state based on distance
-            if (distanceToPlayer > stoppingDistance)
+            bool isWithinAttackRange = distanceToPlayer <= stoppingDistance;
+            animator.SetBool("Attacking", isWithinAttackRange);
+
+            if (!isWithinAttackRange)
             {
-                // Move towards player
-                transform.position += direction * moveSpeed * Time.deltaTime;
-                AlignWithTerrain();  // Adjust Y position to terrain height
+                float moveAmount = moveSpeed * Time.deltaTime;
 
-                // Make sure we're not in attack mode
-                animator.SetBool("Attacking", false);
+                if (moveAmount > distanceToPlayer - stoppingDistance)
+                {
+                    moveAmount = distanceToPlayer - stoppingDistance;
+                }
+
+                transform.position += direction * moveAmount;
+                AlignWithTerrain();
             }
-            else
+
+            if (direction != Vector3.zero)
             {
-                // Stop and attack when within stopping distance
-                animator.SetBool("Attacking", true);
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
             }
-
-            // Always rotate to face the player
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
     }
 
