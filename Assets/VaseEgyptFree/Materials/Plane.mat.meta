@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: b8e9535bb0f0f35449af57c1c1412d21
+timeCreated: 1561758430
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 149689
+  packageName: Vase Egypt Free
+  packageVersion: 1.0
+  assetPath: Assets/VaseEgyptFree/Materials/Plane.mat
+  uploadId: 318471

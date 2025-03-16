@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 5ddde51d280d4754494611bdcd869b3a
+timeCreated: 1561799323
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 149689
+  packageName: Vase Egypt Free
+  packageVersion: 1.0
+  assetPath: Assets/VaseEgyptFree/Prefabs/vase_A_S1.prefab
+  uploadId: 318471
