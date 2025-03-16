@@ -5914,7 +5914,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &694051150
 Transform:
   m_ObjectHideFlags: 0
@@ -5946,7 +5946,7 @@ MonoBehaviour:
   player: {fileID: 1219958036}
   moveSpeed: 2
   rotationSpeed: 5
-  stoppingDistance: 2
+  stoppingDistance: 3
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -5990,7 +5990,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &705546557
 Transform:
   m_ObjectHideFlags: 0
@@ -6022,7 +6022,7 @@ MonoBehaviour:
   player: {fileID: 1219958036}
   moveSpeed: 2
   rotationSpeed: 5
-  stoppingDistance: 2
+  stoppingDistance: 3
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -8793,7 +8793,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1052036028
 Transform:
   m_ObjectHideFlags: 0
@@ -8825,7 +8825,7 @@ MonoBehaviour:
   player: {fileID: 1219958036}
   moveSpeed: 2
   rotationSpeed: 5
-  stoppingDistance: 2
+  stoppingDistance: 3
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -11807,7 +11807,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1326872267
 Transform:
   m_ObjectHideFlags: 0
@@ -11839,7 +11839,7 @@ MonoBehaviour:
   player: {fileID: 1219958036}
   moveSpeed: 2
   rotationSpeed: 5
-  stoppingDistance: 2
+  stoppingDistance: 3
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -12831,7 +12831,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1423213602
 Transform:
   m_ObjectHideFlags: 0
@@ -12863,7 +12863,7 @@ MonoBehaviour:
   player: {fileID: 1219958036}
   moveSpeed: 2
   rotationSpeed: 5
-  stoppingDistance: 2
+  stoppingDistance: 3
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -14090,7 +14090,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1540712165
 Transform:
   m_ObjectHideFlags: 0
@@ -14122,7 +14122,7 @@ MonoBehaviour:
   player: {fileID: 1219958036}
   moveSpeed: 2
   rotationSpeed: 5
-  stoppingDistance: 2
+  stoppingDistance: 3
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
