@@ -41,6 +41,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Einstein/Realistic Demo.unity
     guid: 71f4b914a15a2f14eb55872d0101ca86
+  - enabled: 1
+    path: Assets/ThirdPersonShooter/TPS.unity
+    guid: 8e890703f42cb8649998f5953acdbdc7
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 35845fe01580c41289b024647b1d1c53, type: 3}
   m_UseUCBPForAssetBundles: 0
