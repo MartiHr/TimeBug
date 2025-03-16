@@ -8,7 +8,7 @@
 </p>
 
 <p align="center">
-  <a href="https://fmicodes.com/bg"><b>FMI-Codes-2025</b></a>
+  Project for <a href="https://fmicodes.com/bg"><b>FMI-Codes-2025</b></a>
 </p>
 
 ## Scenes: 
