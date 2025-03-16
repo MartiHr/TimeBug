@@ -1,5 +1,10 @@
 # TimeBug: Doctor Cooper's Journey
 
+
+![FMI-Codes-Logo](https://imgur.com/a/bvKuabx)
+[FMI-Codes-2025](https://fmicodes.com/bg)
+
+
 ## Game Description
 
 Time Paradox is a 3D rogue-like adventure game set in the year 2300. Players take on the role of *Doctor Cooper*, a scientist who has spent the last seven years developing a time machine. One fateful day, he is mysteriously pushed into the active machine and finds himself trapped in ancient history. To return to his own time, Doctor Cooper must navigate through perilous environments, decipher cryptic messages, and battle foes from different eras.
@@ -68,11 +73,7 @@ Time Paradox is a 3D rogue-like adventure game set in the year 2300. Players tak
 
 TBD: Add installation steps once the project reaches a playable state.
 
-## Contributing
-
-TBD: Add contribution guidelines for team members.
-
-## Asset Collection  
+## Asset Collection:
 
 ### Vehicles  
 - **Flying Car:** [CGTrader](https://www.cgtrader.com/free-3d-models/car/concept-car/flying-car)  
@@ -97,6 +98,12 @@ TBD: Add contribution guidelines for team members.
 ### Materials & Visual Effects  
 - **Color Orb:** [Sketchfab](https://sketchfab.com/3d-models/color-orb-4d5882be5eaa4214aa394ae96563f14e)  
 - **Skybox (Nebula):** [Unity Asset Store](https://assetstore.unity.com/packages/2d/textures-materials/sky/nebula-skyboxes-219924)  
+
+## Contributing
+
+TBD: Add contribution guidelines for team members.
+
+
 
 
 ## License
