@@ -13,13 +13,6 @@
 
 ## Scenes: 
 
-### Main Menu
-<p align="center">
-  <a href="https://postimg.cc/9RqDQ3kd">
-    <img src="https://i.postimg.cc/Hx6X3d4h/sc1.png" alt="Screenshot 1">
-  </a>
-</p>
-
 ### Egypt
 <p align="center">
   <a href="https://postimg.cc/K4BKX2BF">
