@@ -6,15 +6,13 @@ public class EnemyMovement : MonoBehaviour
     public float moveSpeed = 3f;
     public float rotationSpeed = 5f;
     public float stoppingDistance = 2f;
+    public LayerMask groundLayer;
 
-    private float initialYPosition;
-    private bool isHit = false;  // Track if enemy was hit
-
+    private bool isHit = false;
     private Animator animator;
 
     void Start()
     {
-        initialYPosition = transform.position.y;
         animator = GetComponentInChildren<Animator>();
     }
 
@@ -22,34 +20,65 @@ public class EnemyMovement : MonoBehaviour
     {
         if (player != null && !isHit)
         {
-            Vector3 direction = new Vector3(player.position.x - transform.position.x, 0, player.position.z - transform.position.z).normalized;
-            float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+            Vector3 direction = new Vector3(player.position.x - transform.position.x, 0, player.position.z - transform.position.z);
+            float distanceToPlayer = direction.magnitude;
+            direction.Normalize();
 
-            if (distanceToPlayer > stoppingDistance)
+            bool isWithinAttackRange = distanceToPlayer <= stoppingDistance;
+            animator.SetBool("Attacking", isWithinAttackRange);
+
+            if (!isWithinAttackRange)
             {
-                transform.position += direction * moveSpeed * Time.deltaTime;
-                transform.position = new Vector3(transform.position.x, initialYPosition, transform.position.z);
-            }
-            else 
-            {
-                animator.SetBool("Attacking", true);
+                float moveAmount = moveSpeed * Time.deltaTime;
+
+                if (moveAmount > distanceToPlayer - stoppingDistance)
+                {
+                    moveAmount = distanceToPlayer - stoppingDistance;
+                }
+
+                transform.position += direction * moveAmount;
+                AlignWithTerrain();
             }
 
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            if (direction != Vector3.zero)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            }
         }
     }
 
-    // Stop enemy when hit
+    void MoveTowardsPlayer()
+    {
+        Vector3 direction = new Vector3(player.position.x - transform.position.x, 0, player.position.z - transform.position.z).normalized;
+        transform.position += direction * moveSpeed * Time.deltaTime;
+        AlignWithTerrain();
+    }
+
+    void RotateTowardsPlayer()
+    {
+        Vector3 direction = new Vector3(player.position.x - transform.position.x, 0, player.position.z - transform.position.z).normalized;
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+    }
+
+    void AlignWithTerrain()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position + Vector3.up * 2f, Vector3.down, out hit, Mathf.Infinity, groundLayer))
+        {
+            transform.position = new Vector3(transform.position.x, hit.point.y, transform.position.z);
+        }
+    }
+
     public void HitByBullet()
     {
         isHit = true;
         Debug.Log(gameObject.name + " was hit!");
 
-        Animator animator = GetComponentInChildren<Animator>();
         if (animator != null)
         {
-            animator.speed = 0; // Freezes animation on the current frame
+            animator.speed = 0;
         }
     }
 }
