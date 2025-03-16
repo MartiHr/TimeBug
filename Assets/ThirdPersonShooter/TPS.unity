@@ -1185,8 +1185,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 96531724}
   serializedVersion: 2
-  m_LocalRotation: {x: -3.4135142e-15, y: 1, z: -0.000000018116912, w: -0.0000001884159}
-  m_LocalPosition: {x: -193.01001, y: -11.425001, z: -84.14}
+  m_LocalRotation: {x: 0, y: 1, z: 0.000000016381975, w: 0}
+  m_LocalPosition: {x: -193.01001, y: -14.335001, z: -84.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5914,7 +5914,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &694051150
 Transform:
   m_ObjectHideFlags: 0
@@ -5946,7 +5946,7 @@ MonoBehaviour:
   player: {fileID: 1219958036}
   moveSpeed: 2
   rotationSpeed: 5
-  stoppingDistance: 3
+  stoppingDistance: 2
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -5990,7 +5990,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &705546557
 Transform:
   m_ObjectHideFlags: 0
@@ -6022,7 +6022,7 @@ MonoBehaviour:
   player: {fileID: 1219958036}
   moveSpeed: 2
   rotationSpeed: 5
-  stoppingDistance: 3
+  stoppingDistance: 2
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -6424,8 +6424,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 736294085}
   serializedVersion: 2
-  m_LocalRotation: {x: -3.4135142e-15, y: 1, z: -0.000000018116912, w: -0.0000001884159}
-  m_LocalPosition: {x: -193.01001, y: -11.425001, z: -84.14}
+  m_LocalRotation: {x: 0, y: 1, z: 0.000000016381975, w: 0}
+  m_LocalPosition: {x: -193.01001, y: -14.335001, z: -84.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8793,7 +8793,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1052036028
 Transform:
   m_ObjectHideFlags: 0
@@ -8825,7 +8825,7 @@ MonoBehaviour:
   player: {fileID: 1219958036}
   moveSpeed: 2
   rotationSpeed: 5
-  stoppingDistance: 3
+  stoppingDistance: 2
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -10675,8 +10675,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1219958035}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -192.5, y: -11.02, z: -87.28}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -192.5, y: -13.93, z: -87.28}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11807,7 +11807,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1326872267
 Transform:
   m_ObjectHideFlags: 0
@@ -11839,7 +11839,7 @@ MonoBehaviour:
   player: {fileID: 1219958036}
   moveSpeed: 2
   rotationSpeed: 5
-  stoppingDistance: 3
+  stoppingDistance: 2
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -12831,7 +12831,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1423213602
 Transform:
   m_ObjectHideFlags: 0
@@ -12863,7 +12863,7 @@ MonoBehaviour:
   player: {fileID: 1219958036}
   moveSpeed: 2
   rotationSpeed: 5
-  stoppingDistance: 3
+  stoppingDistance: 2
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -14090,7 +14090,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1540712165
 Transform:
   m_ObjectHideFlags: 0
@@ -14122,7 +14122,7 @@ MonoBehaviour:
   player: {fileID: 1219958036}
   moveSpeed: 2
   rotationSpeed: 5
-  stoppingDistance: 3
+  stoppingDistance: 2
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -14163,6 +14163,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1550898165}
+  - component: {fileID: 1550898166}
   m_Layer: 0
   m_Name: All
   m_TagString: Untagged
@@ -14197,6 +14198,18 @@ Transform:
   - {fileID: 449871638}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1550898166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550898164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb9419bc75edf1244bd640214c97c2a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1555307048
 GameObject:
   m_ObjectHideFlags: 0
