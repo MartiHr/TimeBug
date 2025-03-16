@@ -1,8 +1,15 @@
 # TimeBug: Doctor Cooper's Journey
 
 
-![FMI-Codes-Logo](https://imgur.com/a/bvKuabx)
-[FMI-Codes-2025](https://fmicodes.com/bg)
+<p align="center">
+  <a href="https://postimg.cc/3dDN7Z2p">
+    <img src="https://i.postimg.cc/BQmKTY6h/images-1.png" alt="Game Logo" width="250">
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://fmicodes.com/bg"><b>FMI-Codes-2025</b></a>
+</p>
 
 
 ## Game Description
@@ -53,26 +60,6 @@ Time Paradox is a 3D rogue-like adventure game set in the year 2300. Players tak
 
 - **Development Roadmap**
 
-## Prototype Phase:
-
-- Basic movement, combat, and environment setup
-
-- Core mechanics for time travel and level transitions
-
-- Basic AI and procedural generation
-
-## Future Features:
-
-- More weapons and enemy types
-
-- Multiplayer co-op mode
-
-- Expanded storyline and endings
-
-## Installation and Running the Game
-
-TBD: Add installation steps once the project reaches a playable state.
-
 ## Asset Collection:
 
 ### Vehicles  
@@ -99,13 +86,6 @@ TBD: Add installation steps once the project reaches a playable state.
 - **Color Orb:** [Sketchfab](https://sketchfab.com/3d-models/color-orb-4d5882be5eaa4214aa394ae96563f14e)  
 - **Skybox (Nebula):** [Unity Asset Store](https://assetstore.unity.com/packages/2d/textures-materials/sky/nebula-skyboxes-219924)  
 
-## Contributing
-
-TBD: Add contribution guidelines for team members.
-
-
-
-
 ## License
 
-TBD: Define licensing terms.
+### GPL-3.0 license
