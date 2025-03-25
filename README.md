@@ -1,6 +1,6 @@
 # TimeBug: Doctor Cooper's Journey
 
-***Update: The application secured the sponsor prize of [Experian](https://www.experian.bg/). For more info check one of the project contibutor's Linked in profiles.***
+***Update: The application secured the sponsor prize of [Experian](https://www.experian.bg/). For more info check one of the project contibutor's LinkedIn profiles.***
 
 <p align="center">
   <a href="https://postimg.cc/3dDN7Z2p">
